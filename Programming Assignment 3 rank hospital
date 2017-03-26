@@ -49,18 +49,17 @@ rankhospital <- function(state, outcome, num = "best") {
   outcome_column_name <- names(desired_data)[outcome_column]
   hospital_column_name <- names(desired_data)[2]
   index <- with(desired_data, order(desired_data[outcome_column_name], desired_data[hospital_column_name]))
-  ordered_desired_data <- desired_data[index, ]
+  ordered_data <- desired_data[index, ]
   
-  #if nume is either "best" or "worst", then interpret it to the
   #corresponding numerical value
   if (is.character(num) == TRUE) {
     if (num == "best") {
       num = 1
     }
     else if (num == "worst") {
-      num = length(ordered_desired_data[, outcome_column])
+      num = length(ordered_data[, outcome_column])
     }
   }
   #return the hospital name with the outcome ranking of num
-  ordered_desired_data[num, 2]
+  ordered_data[num, 2]
 }
